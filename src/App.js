@@ -10,14 +10,14 @@ import { AuthContext } from './Component/AuthContext';
 function App() {
   return (
     <BrowserRouter>
-    <AuthProvider>
-      <Routes>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-        {/* <PrivateRoute path="/profile/:id" component={Profile}/> */}
-        {/* <PrivateRoute path="/" component={Feed}/> */}
-      </Routes>
-    </AuthProvider>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/" element={<Feed/>}/>
+          {/* <Route path="/profile" element={<Profile/>}/> */}
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

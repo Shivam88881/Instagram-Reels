@@ -26,3 +26,5 @@ export const database= {
   users: firestore.collection('user'),
   getTimeStamp : firebase.firestore.FieldValue.serverTimestamp
 }
+
+export const storage=firebase.storage()

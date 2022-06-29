@@ -6,11 +6,10 @@ import { auth } from "../firebase";
 export const AuthContext= React.createContext();
 
 export function AuthProvider(children){
-    console.log(children.children.props.children);
-    // children=children.children.props.children;
-    // children=children.props.children
+    console.log(children.children);
     const [user,setUser]=useState();
     const [loading,setLoading]=useState(true);
+    console.log(loading);
 
     function login(email,password){
         return auth.signInWithEmailAndPassword(email, password);
@@ -27,7 +26,7 @@ export function AuthProvider(children){
     useEffect(()=>{
         const unsub=auth.onAuthStateChanged((user)=>{
             setUser(user)
-            setLoading(false)
+            setLoading(!loading)
         })
         return ()=>{
             unsub();
@@ -43,7 +42,8 @@ export function AuthProvider(children){
 
     return (
         <AuthContext.Provider value={store}>
-            {!loading && children.children.props.children}
+            {!loading && children.children}
+            {/* Here children.children is written cause in App.js children of AuthProvider is Routes but we need to render pages (<Login/> etc.) which is in route. route is children of routes thus here children.children is written*/}
         </AuthContext.Provider>
     )
 }
