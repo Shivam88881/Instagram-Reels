@@ -1,0 +1,55 @@
+.LoginWrapper{
+    display: flex;
+    justify-content: center;
+
+}
+.imgcar{
+    margin-top: 7%;
+    height: 551px;
+    width: 453px;
+    border-radius: 35px;
+    position: relative;
+}
+.car{
+    position: absolute;
+    left: 200px;
+    top: 9px;
+    width: 244px;
+    
+}
+.car img{
+    object-fit: fill;
+    border-radius: 30px;
+    height: 535px;;
+}
+.LoginCard{
+    margin-top: 12%;
+    width: 25%;
+    margin-left: 40px;
+}
+.LoginImg{
+    display: flex;
+    justify-content: center;
+}
+.LoginImg img{
+    margin-top: 5px;
+    margin-left: 5px;
+   width: 200px;
+   height: 40px;
+   object-fit: fill;
+}
+.LoginMsg{
+    margin: 3px;
+    text-align: center;
+    color: gray;
+}
+
+.DontHaveAcc{
+    margin-top: 30px;
+}
+.DontHaveAcc div{
+    /* margin-left: 5px; */
+    font-size: 15px;
+    color: black;
+    text-align: center;
+}
