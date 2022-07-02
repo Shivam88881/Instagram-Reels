@@ -14,6 +14,10 @@ import {Link} from 'react-router-dom';
 import { borderRadius, textAlign } from '@mui/system';
 import slider from './images/mobile.png'
 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import img1 from './images/img1.jpg'
@@ -21,8 +25,38 @@ import img2 from './images/img2.jpg'
 import img3 from './images/img3.jpg'
 import img4 from './images/img4.jpg'
 import img5 from './images/img5.jpg'
+import { AuthContext } from './AuthContext';
 
 export default function Login() {
+
+    const [email,setEmail]=useState();
+    const [password,setPassword]=useState();
+    const [loading,setLoading]=useState(false);
+    const [error,setError]=useState('');
+
+    const {login} =useContext(AuthContext);
+
+    const history=useNavigate()
+
+    const handleLogin= async()=>{
+        try{
+            setLoading(true);
+            let userObj= await login(email,password);
+            console.log('loged in');
+            console.log(userObj.user.uid);
+            setLoading(false);
+            history("/")
+        }catch(err){
+            setLoading(true);
+            setError(err);
+            console.log(error);
+            setTimeout(() => {
+                setError('');
+            }, 2000);
+            setLoading(false);
+            return;
+        }
+    }
 
   return (
     <div className='LoginWrapper'>
@@ -61,17 +95,17 @@ export default function Login() {
                 </div>
                 <div className='LoginMsg'> Login to watch short videos</div>
                 <div className='LoginMsg'>
-                    {true && <Alert severity="error" margin='dense' >error in signup — check it out!</Alert>}
+                    {error!='' && <Alert severity="error" margin='dense' > {error} </Alert>}
                 </div>
         <CardContent>
-        <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true} margin='dense' size="small"/>
-        <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin='dense' size="small"/>
+        <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true} margin='dense' size="small" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin='dense' size="small" value={password} onChange={(e)=>setPassword(e.target.value)}/>
         <div style={{textAlign:'center'}}>
             <Link to='/' style={{textDecoration:'none'}}> Forgot Password</Link>
         </div>
         </CardContent>
         <CardActions>
-            <Button size="small" margin="dense" variant='contained' fullWidth={true} color='primary'>Login</Button>
+            <Button size="small" margin="dense" variant='contained' fullWidth={true} color='primary' onClick={handleLogin} disabled={loading}>Login</Button>
         </CardActions>
         </Card>
 

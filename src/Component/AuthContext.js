@@ -6,10 +6,10 @@ import { auth } from "../firebase";
 export const AuthContext= React.createContext();
 
 export function AuthProvider(children){
-    console.log(children.children);
+    // console.log(children.children);
     const [user,setUser]=useState();
     const [loading,setLoading]=useState(true);
-    console.log(loading);
+    // console.log(loading);
 
     function login(email,password){
         return auth.signInWithEmailAndPassword(email, password);

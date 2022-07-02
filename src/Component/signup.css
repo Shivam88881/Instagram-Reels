@@ -41,3 +41,31 @@
     color: black;
     text-align: center;
 }
+
+@media only screen and (max-width: 600px){
+    .SignUpCard{
+        position: fixed;
+        top: 10%;
+        width: 80%;
+    }
+    .SignUpTerms{
+        color: gray;
+        margin: 1px;
+        font-size: small;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1000px){
+    .SignUpCard{
+        position: fixed;
+        top: 10%;
+        width: 40%;
+    }
+    .SignUpTerms{
+        color: gray;
+        margin: 2px;
+        font-size: small;
+        text-align: center;
+    }
+}

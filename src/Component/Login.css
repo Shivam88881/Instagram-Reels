@@ -53,3 +53,95 @@
     color: black;
     text-align: center;
 }
+
+@media only screen and (max-width: 600px){
+    .LoginWrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .imgcar{
+        margin-top: 8%;
+        height: 200px;
+        width: 180px;
+        border-radius: 20px;
+        position: relative;
+    }
+    .car{
+        position: absolute;
+        left: 80px;
+        top: 5px;
+        width: 96px;
+        
+    }
+    .car img{
+        object-fit: fill;
+        border-radius: 10px;
+        height: 194px;;
+    }
+
+    .LoginCard{
+        margin-top: 12%;
+        width: 95%;
+        margin-left: 10px;
+    }
+    .LoginImg{
+        display: flex;
+        justify-content: center;
+    }
+    .LoginImg img{
+        margin-top: 5px;
+        margin-left: 5px;
+       width: 200px;
+       height: 40px;
+       object-fit: fill;
+    }
+    .LoginMsg{
+        margin: 3px;
+        text-align: center;
+        color: gray;
+    }
+    
+    .DontHaveAcc{
+        margin-top: 30px;
+    }
+    .DontHaveAcc div{
+        /* margin-left: 5px; */
+        font-size: 15px;
+        color: black;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1024px){
+    .LoginWrapper{
+        display: flex;
+        /* justify-content: center; */
+    
+    }
+    .imgcar{
+        margin-top: 7%;
+        margin-left: 0%;
+        height: 440px;
+        width: 360px;
+        border-radius: 20px;
+        position: relative;
+    }
+    .car{
+        position: absolute;
+        left: 159px;
+        top: 8px;
+        width: 198px;
+    }
+    .car img{
+        object-fit: fill;
+        border-radius: 27px;
+        height: 427px;;
+    }
+    .LoginCard{
+        margin-top: 12%;
+        width: 35%;
+        margin-left: 10px;
+    }
+}

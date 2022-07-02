@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import SignUp from './Component/SignUp'
+// import SignUp from './Component/SignUp1';
 import Login from './Component/Login'
 import Feed from './Component/Feed';
 import {BrowserRouter,Route, Routes} from 'react-router-dom';

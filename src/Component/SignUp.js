@@ -19,74 +19,67 @@ import { AuthContext } from './AuthContext';
 import {database, storage} from '../firebase'
 
 
+
+
 export default function SignUp() {
 
 const [name,setName]=useState();
 const [email,setEmail]=useState();
 const [password,setPassword]=useState();
 const [file,setFile]=useState(null);
-const [error,seterror]=useState('');
-const [loading,setLoading]=useState();
+const [error,setError]=useState('');
+const [loading,setLoading]=useState(false);
 let history = useNavigate ();
 
 const {signup}=useContext(AuthContext);
 
 
-const handleSignUp= async()=>{
+const handleClick = async() => {
     if(file==null){
-        seterror('Please select profile photo');
-        setTimeout(() => {
-            seterror('');
-        }, 2000);
+        setError("Please upload profile image first");
+        setTimeout(()=>{
+            setError('')
+        },2000)
         return;
     }
     try{
-        let userObj= await signup(email,password);
-        console.log(userObj);
+        setError('')
+        setLoading(true)
+        let userObj = await signup(email,password)
         let uid = userObj.user.uid
-        const uploadTask= storage.ref( `/users/${uid}/profile photo`).put(file);
-        // const uploadTask = storage.ref(`/users/${uid}/ProfileImage`).put(file);
-        uploadTask.on('state_changed',progress,errorInUpload,complete);
-
-        const progress=(snapshot)=>{
-            console.log('upload started ')
-            const uploaded=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-            console.log(uploaded);
+        const uploadTask = storage.ref(`/users/${uid}/ProfileImage`).put(file);
+        uploadTask.on('state_changed',fn1,fn2,fn3);
+        function fn1(snapshot){
+            let progress = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+            console.log(`Upload is ${progress} done.`)
         }
-
-        const errorInUpload= (error)=>{
-            console.log('error occured during upload');
-            seterror(error);
-            console.log(error);
-            setTimeout(() => {
-                seterror('');
-            }, 2000);
-            setLoading(false);
+        function fn2(error){
+            setError(error);
+            setTimeout(()=>{
+                setError('')
+            },2000);
+            setLoading(false)
             return;
         }
-
-        const complete= ()=>{
-            console.log('SignUp completed')
-            uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-                console.log('File available at', url);
+        function fn3(){
+            uploadTask.snapshot.ref.getDownloadURL().then((url)=>{
+                console.log(url);
                 database.users.doc(uid).set({
-                    Full_Name: name,
-                    Email: email,
-                    User_Id: uid,
-                    Profile_photo_url: url,
-                    CreatedAt: database.getTimeStamp()
+                    email:email,
+                    userId:uid,
+                    fullname:name,
+                    profileUrl:url,
+                    createdAt:database.getTimeStamp()
                 })
-              });
-              setLoading(false);
-            //   history.push('/');
+            })
+            setLoading(false);
+            history('/')
         }
-
-    } catch(err){
-        seterror(err);
-        setTimeout(() => {
-            seterror('');
-        }, 2000);
-        return;
+    }catch(err){
+        setError(err);
+        setTimeout(()=>{
+            setError('')
+        },2000)
     }
 }
 
@@ -115,7 +108,7 @@ const handleSignUp= async()=>{
         </CardContent>
 
         <CardActions>
-            <Button size="small" margin="dense" variant='contained' fullWidth={true} color='primary' onClick={handleSignUp}>SignUp</Button>
+            <Button size="small" margin="dense" variant='contained' fullWidth={true} color='primary' onClick={handleClick} disabled={loading}>SignUp</Button>
         </CardActions>
         <CardContent>
             <div className='SignUpTerms'>By signing up you,you agree to our Terms, Data Policy and Cookies Policy;</div>
