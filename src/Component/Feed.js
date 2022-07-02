@@ -10,7 +10,9 @@ import { AuthContext } from './AuthContext';
 import {database, storage} from '../firebase'
 import UploadFiles from './UploadFiles';
 import Posts from './Posts';
+import FeedLogo from './images/FeedLogo.jpg'
 
+import Button from '@mui/material/Button';
 
 
 
@@ -47,16 +49,20 @@ function Feed() {
 
 
   return (
-      <div className='feed-container'>
-        <div  className='feed-container-container'>
-          Welcome to feed
-          <button onClick={handleClick} style={{marginLeft:'10px'}}>Logout</button>
-          {/* {console.log(user)} */}
-          <UploadFiles user={userData}/>
-          <Posts user={userData}/>
+    <>
+        <div className='FeedLogo'>
+          <img src={FeedLogo} />
+          {/* <button onClick={handleClick} style={{marginLeft:'10px'}}>Logout</button> */}
+          <Button variant="outlined" color="primary" onClick={handleClick} className='Feed-btn'>Logout</Button>
         </div>
-      </div>
-    
+        <div className='feed-container'> 
+          <div  className='feed-container-container'>
+            {/* {console.log(user)} */}
+            <UploadFiles user={userData}/>
+            <Posts user={userData}/>
+          </div>
+        </div>
+    </>
   )
 }
 

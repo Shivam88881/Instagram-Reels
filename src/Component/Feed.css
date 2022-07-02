@@ -1,3 +1,25 @@
+.FeedLogo{
+    display: flex;
+    margin-top: 1px;
+    margin-left: 2px;
+    height: 50px;
+    width: 100%;
+    
+}
+
+.FeedLogo img{
+    margin-top: 5px;
+    height: 40px;
+    width: 200px;
+    /* margin-left: 25%; */
+}
+
+.Feed-btn{
+    margin-left: 10px;
+    margin-top: 5px;
+    height: 35px;
+}
+
 .feed-container{
     display: flex;
     flex-direction: column;
@@ -17,5 +39,17 @@
         display: flex;
         width: 95%;
         align-items: center;
+    }
+
+    .FeedLogo img{
+        height: 35px;
+        width: 180px;
+        /* margin-left: 25%; */
+    }
+
+    .Feed-btn{
+        margin-left: 10px;
+        margin-top: 5px;
+        height: 30px;
     }
 }
