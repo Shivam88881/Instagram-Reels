@@ -2,16 +2,15 @@
     display: flex;
     margin-top: 1px;
     margin-left: 2px;
-    height: 50px;
+    height: 46px;
     width: 100%;
-    
+    justify-content: center;
 }
 
 .FeedLogo img{
     margin-top: 5px;
     height: 40px;
     width: 200px;
-    /* margin-left: 25%; */
 }
 
 .Feed-btn{

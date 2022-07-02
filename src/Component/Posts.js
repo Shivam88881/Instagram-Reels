@@ -36,16 +36,10 @@ function Posts(userData) {
             
             {
                 posts.map((post,index)=>(
-                    <React.Fragment key={index}>
-                        <div className='videos'>
-                            <Video vsrc={post.pUrl} postData={post} userData={userData}/>
-                        </div>
+                    <div className='videos' key={index}>
+                        <Video vsrc={post.pUrl} postData={post} userData={userData}/>
+                    </div>
 
-                        {/* <div className='video-functionality'>
-                            <Like userData={userData} postData={post}/>
-                        </div> */}
-
-                    </React.Fragment>
                 ))
             } 
         </div> 
