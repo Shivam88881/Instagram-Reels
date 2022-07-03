@@ -32,12 +32,14 @@ import FeedLogo from './images/FeedLogo.png'
 
 
 export default function Navbar(userData) {
+
+  const {user}=useContext(AuthContext)
     // console.log(userData)
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =useState(null);
 
   const history=useNavigate()
-  const logout=useContext(AuthContext)
+  const {logout} =useContext(AuthContext)
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -61,8 +63,7 @@ export default function Navbar(userData) {
   };
 
   const handleLogout = async()=>{
-    await logout
-    history('/login')
+    await logout()
   }
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {

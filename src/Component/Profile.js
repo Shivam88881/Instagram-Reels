@@ -53,7 +53,7 @@ useEffect( ()=>{
   return (
     <div>
 
-      {console.log(posts)}
+      {/* {console.log(posts.length)} */}
       {
         posts==null || userData==null ? <CircularProgress color="secondary" /> :<>
         <Navbar userData={userData}/>

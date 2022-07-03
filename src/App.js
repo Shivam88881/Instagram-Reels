@@ -10,6 +10,8 @@ import {BrowserRouter,Route, Routes} from 'react-router-dom';
 import { AuthProvider } from './Component/AuthContext';
 import { AuthContext } from './Component/AuthContext';
 
+import PrivateRoute from './Component/PrivateRoute';
+
 function App() {
 
 
@@ -19,9 +21,9 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<SignUp/>}/>
-          <Route path="/profile:id" element={<Profile/>}/>
+          <Route path="/profile:id" element={<PrivateRoute component={Profile}/>}/>
           <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-          <Route path="/" element={<Feed/>}/>
+          <Route path="/" element={<PrivateRoute component={Feed}/>}/>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

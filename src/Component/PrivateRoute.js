@@ -1,12 +1,19 @@
-import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import React,{useContext} from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-function PrivateRoute({children,...rest}) {
-  return (
-    <>
-        <Route {...rest} render={()=>children}/>
-    </>
-  )
+import { AuthContext } from './AuthContext';
+
+function PrivateRoute({component:Component,...rest}) {
+
+  const history=useNavigate()
+    const {user} = useContext(AuthContext) 
+    return (
+        <>
+        {console.log(user)}
+          {user!=null?<Component/>:<Navigate to='/login' />}
+          
+        </>
+    )
 }
 
 export default PrivateRoute
