@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import Alert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+// import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
 
 
@@ -13,7 +13,6 @@ import {database,storage} from '../firebase'
 
 
 function UploadFiles(props) {
-    // console.log(props);
     const[error,setError]=useState('');
     const[loading,setLoading]=useState(false);
 
@@ -57,14 +56,14 @@ function UploadFiles(props) {
                         comments:[],
                         pId:uid,
                         pUrl:url,
-                        uName : props.user.fullname,
-                        uProfile : props.user.profileUrl,
-                        userId : props.user.userId,
+                        uName : props.userData.fullname,
+                        uProfile : props.userData.profileUrl,
+                        userId : props.userData.userId,
                         createdAt : database.getTimeStamp()
                     }
                     database.posts.add(obj).then(async(ref)=>{
-                        let res = await database.users.doc(props.user.userId).update({
-                            postIds : props.user.postIds!=null ? [...props.user.postIds,ref.id] : [ref.id]
+                        let res = await database.users.doc(props.userData.userId).update({
+                            postIds : props.userData.postIds!=null ? [...props.userData.postIds,ref.id] : [ref.id]
                         })
                     }).then(()=>{
                         setLoading(false)
@@ -85,9 +84,9 @@ function UploadFiles(props) {
     <div>
         {error!='' ? <Alert severity="error"> {error} </Alert>:
         <>
-            <Button variant="outlined" color="error" startIcon={<FileUploadIcon/>} component='label'>
+            <Typography variant="outlined" color="error" component='label' style={{background:'white'}}>
                 <input type='file' accept='video/*' onChange={(e)=>handleUpload(e.target.files[0])}  hidden></input>
-            Upload Videos</Button>
+            Upload Videos</Typography>
             {loading && <LinearProgress color="secondary" style={{width:'45%',marginLeft:'2px',marginTop:'3px'}}/>}
         </>
 

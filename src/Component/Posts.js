@@ -9,9 +9,6 @@ import Avatar from '@mui/material/Avatar';
 
 function Posts(userData) {
 
-    // console.log(userData)
-
-
     const [posts,setPosts]=useState(null);
 
     useEffect( ()=>{
@@ -23,6 +20,7 @@ function Posts(userData) {
                 parr.push(data)
             })
             setPosts(parr)
+
         })
         return unsub
     },[])

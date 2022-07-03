@@ -4,7 +4,7 @@
 
 .Owner-detail{
     position: absolute;
-    bottom: 2%;
+    bottom: 8%;
     left: 6%;
 }
 
@@ -38,21 +38,23 @@
 .modal{
     border: 0.5px solid black;
     width: 100%;
-    height: 60%;
+    height: 70%;
     position: absolute;
     left: 0px;
-    top: 40%;
+    top: 30%;
 }
 
 .All-comments{
-    height: 41.5vh;
+    height: 45vh;
     width: 100%;
+    overflow-y: scroll;
 }
 .modal-close{
     position: absolute;
     right: 5%;
 }
 .comment-input{
-    margin-top: 1px;
+    margin-top: 0px;
+    height: 50px;
     display: flex;
 }

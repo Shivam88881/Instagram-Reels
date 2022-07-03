@@ -1,23 +1,12 @@
+ 
 .FeedLogo{
     display: flex;
-    margin-top: 1px;
-    margin-left: 2px;
-    height: 46px;
+    border-radius: 5px;
+    height: 65px;
     width: 100%;
     justify-content: center;
 }
 
-.FeedLogo img{
-    margin-top: 5px;
-    height: 40px;
-    width: 200px;
-}
-
-.Feed-btn{
-    margin-left: 10px;
-    margin-top: 5px;
-    height: 35px;
-}
 
 .feed-container{
     display: flex;
@@ -25,30 +14,40 @@
     align-items: center;
 }
 
+
 .feed-container-container{
+    background-color: rgb(228, 231, 234);
     flex-direction: column;
     display: flex;
     width: 50%;
     align-items: center;
 }
 
+
+
 @media only screen and (max-width: 600px){
     .feed-container-container{
         flex-direction: column;
         display: flex;
-        width: 95%;
+        width: 98%;
         align-items: center;
+    }
+
+    .FeedLogo{
+        height: 57px;
     }
 
     .FeedLogo img{
         height: 35px;
         width: 180px;
-        /* margin-left: 25%; */
     }
 
     .Feed-btn{
         margin-left: 10px;
-        margin-top: 5px;
         height: 30px;
     }
+    /* .posts{
+        width: 298px;
+    } */
 }
+

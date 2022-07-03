@@ -67,7 +67,8 @@ function Video({vsrc,postData,userData}) {
       },[postData])
 
     const autoScroll=(e)=>{
-        let next=ReactDOM.findDOMNode(e.target).parentNode.nextSibling
+      // console.log(ReactDOM.findDOMNode(e.target).parentNode.parentNode.nextSibling.childNodes[0])
+        let next=ReactDOM.findDOMNode(e.target).parentNode.parentNode.nextSibling.childNodes[0]
         // console.log(next)  /* e.target is current video. ReactDOM.findDOMNode(e.target) is giving node of e.target which is current video means giving node of current video, again we are ging to its parents and then going to nextsibling means next video   */
         if(next){
             e.target.muted=true
@@ -75,10 +76,32 @@ function Video({vsrc,postData,userData}) {
         }
     }
 
+  const callback= (entries)=>{
+    entries.forEach((entry)=>{
+      // console.log(entry.target.childNodes[0].childNodes[0])
+      let ele=entry.target.childNodes[0].childNodes[0]
+      ele.play().then(()=>{
+        if(!entry.isIntersecting){
+          ele.pause()
+        }
+      })
+    })
+  }
+
+  let observer=new IntersectionObserver(callback,{threshold:0.6})
+  
+  useEffect(()=>{
+      const elements=document.querySelectorAll(".videos")
+      elements.forEach((element)=>{
+        observer.observe(element)
+      })
+      return ()=>observer.disconnect();
+  },[postData])
+
 
   return (
     <div className='video'>
-      <video src={vsrc} className='videos-styling' muted={true} onClick={handleClick}  onEnded={autoScroll} autoPlay={true} ></video>
+      <video src={vsrc} className='videos-styling' muted={true} onClick={handleClick}  onEnded={autoScroll} ></video>
 
       <div className='Owner-detail' style={{display:'flex'}}>
         <Avatar  src={postData.uProfile} />
@@ -98,11 +121,11 @@ function Video({vsrc,postData,userData}) {
               <div  className='modal-content'>
               <Card className='All-comments'>
                 <CloseIcon onClick={toggleModal} className='modal-close'/>
-                <div>
+                <div >
                   {console.log(comment)}
                   {
                     comment.length==0 ? <CircularProgress color="secondary"/> :
-                    <div>
+                    <div >
                       {
                         comment.map((cmnt,index)=>(
                           <div key={index} style={{display:'flex',marginLeft:'5px'}}>

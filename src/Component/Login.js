@@ -101,7 +101,7 @@ export default function Login() {
         <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true} margin='dense' size="small" value={email} onChange={(e)=>setEmail(e.target.value)}/>
         <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin='dense' size="small" value={password} onChange={(e)=>setPassword(e.target.value)}/>
         <div style={{textAlign:'center'}}>
-            <Link to='/' style={{textDecoration:'none'}}> Forgot Password</Link>
+            <Link to='/forgotpassword' style={{textDecoration:'none'}}> Forgot Password</Link>
         </div>
         </CardContent>
         <CardActions>
